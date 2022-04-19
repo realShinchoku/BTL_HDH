@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace BTL_HDH
 {
-    public partial class Form1 : Form
+    public partial class TaskForm : Form
     {
-        public Form1()
+        public TaskForm()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
