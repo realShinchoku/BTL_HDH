@@ -1,0 +1,9 @@
+D:\WorkSpace\C#\demo\obj\Debug\demo.csproj.AssemblyReference.cache
+D:\WorkSpace\C#\demo\obj\Debug\demo.Properties.Resources.resources
+D:\WorkSpace\C#\demo\obj\Debug\demo.csproj.GenerateResource.cache
+D:\WorkSpace\C#\demo\obj\Debug\demo.csproj.CoreCompileInputs.cache
+D:\WorkSpace\C#\demo\bin\Debug\demo.exe.config
+D:\WorkSpace\C#\demo\bin\Debug\demo.exe
+D:\WorkSpace\C#\demo\bin\Debug\demo.pdb
+D:\WorkSpace\C#\demo\obj\Debug\demo.exe
+D:\WorkSpace\C#\demo\obj\Debug\demo.pdb

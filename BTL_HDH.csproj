@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{130ECDE3-ED80-44E9-8B13-924B86AB4EC4}</ProjectGuid>
+    <ProjectGuid>{5508DC18-B4C9-46CF-B8D9-1BB3B6A3ABB7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>BTL_HDH</RootNamespace>
-    <AssemblyName>BTL_HDH</AssemblyName>
+    <RootNamespace>demo</RootNamespace>
+    <AssemblyName>demo</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,17 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JPKeyForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="JPKeyForm.Designer.cs">
-      <DependentUpon>JPKeyForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Y2KeyboardHook.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="JPKeyForm.resx">
-      <DependentUpon>JPKeyForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

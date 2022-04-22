@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BTL_HDH")]
+[assembly: AssemblyTitle("demo")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("BTL_HDH")]
+[assembly: AssemblyProduct("demo")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("130ecde3-ed80-44e9-8b13-924b86ab4ec4")]
+[assembly: Guid("5508dc18-b4c9-46cf-b8d9-1bb3b6a3abb7")]
 
 // Version information for an assembly consists of the following four values:
 //
