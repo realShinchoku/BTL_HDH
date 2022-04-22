@@ -46,16 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TaskForm.cs">
+    <Compile Include="JPKeyForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TaskForm.Designer.cs">
-      <DependentUpon>TaskForm.cs</DependentUpon>
+    <Compile Include="JPKeyForm.Designer.cs">
+      <DependentUpon>JPKeyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="TaskForm.resx">
-      <DependentUpon>TaskForm.cs</DependentUpon>
+    <EmbeddedResource Include="JPKeyForm.resx">
+      <DependentUpon>JPKeyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
