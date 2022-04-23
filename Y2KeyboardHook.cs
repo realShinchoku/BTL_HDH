@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Reflection;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace BTL_HDH
 {
@@ -33,6 +34,10 @@ namespace BTL_HDH
 
         #endregion
 
+        private bool status = false, isKatakana = false;
+
+        private List<Keys> listOfCharater = new List<Keys>() {0,0,0,0,0 };
+
         private KeyboardHookDelegate _hookProc;
         private IntPtr _hookHandle = IntPtr.Zero;
 
@@ -47,6 +52,14 @@ namespace BTL_HDH
             public int Time;
             public int ExtraInfo;
         }
+
+        // constructor
+        public Y2KeyboardHook(bool status = false, bool isKatakana = false)
+        {
+            this.status = status;
+            this.isKatakana = isKatakana;
+        }
+
 
         // destructor
         ~Y2KeyboardHook()
@@ -77,21 +90,21 @@ namespace BTL_HDH
 
                 if (wParam == (IntPtr)WM_KEYDOWN)
                 {
-                    Keys k = (Keys)kbStruct.VirtualKeyCode;
-
-                    // disable Left Windows, Left Shift and Left Control keys
-                    if (k == Keys.A)
+                    if ((int)kbStruct.VirtualKeyCode >= 65 && (int)kbStruct.VirtualKeyCode <= 90)
                     {
-                        SendKeys.Send("あ");
-                        return (IntPtr)1;
+                        listOfCharater.Add((Keys)kbStruct.VirtualKeyCode);
+                        if (listOfCharater.Count > 5)
+                            listOfCharater.RemoveAt(0);
+                        JPChar jpchar = new JPChar(listOfCharater, isKatakana);
+                        if (jpchar.sendChar())
+                            return (IntPtr)1;
                     }
-                    else if (k == (Keys.Escape)) // exit program
-                        Application.Exit();
                 }
             }
 
             return CallNextHookEx(_hookHandle, nCode, wParam, lParam);
         }
+       
 
         public void Uninstall()
         {

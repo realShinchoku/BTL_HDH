@@ -1,0 +1,9 @@
+D:\WorkSpace\C#\BTL_HDH\bin\Debug\demo.exe.config
+D:\WorkSpace\C#\BTL_HDH\bin\Debug\demo.exe
+D:\WorkSpace\C#\BTL_HDH\bin\Debug\demo.pdb
+D:\WorkSpace\C#\BTL_HDH\obj\Debug\BTL_HDH.csproj.AssemblyReference.cache
+D:\WorkSpace\C#\BTL_HDH\obj\Debug\demo.Properties.Resources.resources
+D:\WorkSpace\C#\BTL_HDH\obj\Debug\BTL_HDH.csproj.GenerateResource.cache
+D:\WorkSpace\C#\BTL_HDH\obj\Debug\BTL_HDH.csproj.CoreCompileInputs.cache
+D:\WorkSpace\C#\BTL_HDH\obj\Debug\demo.exe
+D:\WorkSpace\C#\BTL_HDH\obj\Debug\demo.pdb

@@ -1,18 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using BTL_HDH;
 
-namespace WindowsFormsApplication1
+
+namespace BTL_HDH
 {
-    internal sealed class Program
+    static class Program
     {
 
         [STAThread]
-        private static void Main(string[] args)
+        static void Main(string[] args)
         {
-            Y2KeyboardHook keyboardHook = new Y2KeyboardHook();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Y2KeyboardHook keyboardHook = new Y2KeyboardHook(false,false);
             keyboardHook.Install();
-            Application.Run();
+            Application.Run(new JPKey());
         }
 
     }
