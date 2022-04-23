@@ -1,0 +1,10 @@
+D:\WorkSpace\C#\BTL_HDH\bin\Release\demo.exe.config
+D:\WorkSpace\C#\BTL_HDH\bin\Release\demo.exe
+D:\WorkSpace\C#\BTL_HDH\bin\Release\demo.pdb
+D:\WorkSpace\C#\BTL_HDH\obj\Release\BTL_HDH.csproj.AssemblyReference.cache
+D:\WorkSpace\C#\BTL_HDH\obj\Release\BTL_HDH.JPKey.resources
+D:\WorkSpace\C#\BTL_HDH\obj\Release\demo.Properties.Resources.resources
+D:\WorkSpace\C#\BTL_HDH\obj\Release\BTL_HDH.csproj.GenerateResource.cache
+D:\WorkSpace\C#\BTL_HDH\obj\Release\BTL_HDH.csproj.CoreCompileInputs.cache
+D:\WorkSpace\C#\BTL_HDH\obj\Release\demo.exe
+D:\WorkSpace\C#\BTL_HDH\obj\Release\demo.pdb

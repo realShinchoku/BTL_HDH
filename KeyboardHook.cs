@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Runtime.InteropServices;
-using System.Diagnostics;
-using System.Windows.Forms;
-using System.Reflection;
-using System.ComponentModel;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace BTL_HDH
 {
-
-    class Y2KeyboardHook
+    internal class KeyboardHook
     {
-
         #region Win32 API Functions and Constants
 
         [DllImport("user32.dll", SetLastError = true)]
@@ -32,11 +29,13 @@ namespace BTL_HDH
 
         private const int WM_KEYDOWN = 0x0100;
 
-        #endregion
+        private const int WM_KEYUP = 0x0101;
 
-        private bool status = false, isKatakana = false;
+        #endregion Win32 API Functions and Constants
 
-        private List<Keys> listOfCharater = new List<Keys>() {0,0,0,0,0 };
+        private bool isKatakana = false;
+
+        private List<Keys> listOfKeys = new List<Keys>() { 0, 0, 0, 0, 0 };
 
         private KeyboardHookDelegate _hookProc;
         private IntPtr _hookHandle = IntPtr.Zero;
@@ -53,28 +52,21 @@ namespace BTL_HDH
             public int ExtraInfo;
         }
 
-        // constructor
-        public Y2KeyboardHook(bool status = false, bool isKatakana = false)
-        {
-            this.status = status;
-            this.isKatakana = isKatakana;
-        }
-
-
         // destructor
-        ~Y2KeyboardHook()
+        ~KeyboardHook()
         {
             Uninstall();
         }
 
-        public void Install()
+        public void Install(bool isKatakana = false)
         {
+            this.isKatakana = isKatakana;
             _hookProc = KeyboardHookProc;
             _hookHandle = SetupHook(_hookProc);
-
             if (_hookHandle == IntPtr.Zero)
                 throw new Win32Exception(Marshal.GetLastWin32Error());
         }
+
         private IntPtr SetupHook(KeyboardHookDelegate hookProc)
         {
             IntPtr hInstance = Marshal.GetHINSTANCE(Assembly.GetExecutingAssembly().GetModules()[0]);
@@ -90,26 +82,24 @@ namespace BTL_HDH
 
                 if (wParam == (IntPtr)WM_KEYDOWN)
                 {
-                    if ((int)kbStruct.VirtualKeyCode >= 65 && (int)kbStruct.VirtualKeyCode <= 90)
+                    listOfKeys.Add((Keys)kbStruct.VirtualKeyCode);
+                    if (listOfKeys.Count > 5)
+                        listOfKeys.RemoveAt(0);
+                    JPChar jpchar = new JPChar(listOfKeys);
+                    if (listOfKeys[4] == Keys.T && listOfKeys[3] == Keys.Shift && listOfKeys[2] == Keys.Control)
                     {
-                        listOfCharater.Add((Keys)kbStruct.VirtualKeyCode);
-                        if (listOfCharater.Count > 5)
-                            listOfCharater.RemoveAt(0);
-                        JPChar jpchar = new JPChar(listOfCharater, isKatakana);
-                        if (jpchar.sendChar())
-                            return (IntPtr)1;
                     }
+                    if (isKatakana ? jpchar.sendCharKatakana() : jpchar.sendCharHiragana())
+                        return (IntPtr)1;
                 }
             }
 
             return CallNextHookEx(_hookHandle, nCode, wParam, lParam);
         }
-       
 
         public void Uninstall()
         {
             UnhookWindowsHookEx(_hookHandle);
         }
-
     }
 }
