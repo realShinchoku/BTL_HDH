@@ -9,18 +9,16 @@ namespace BTL_HDH
 {
     internal class KeyboardHook
     {
-        #region Win32 API Functions and Constants
+        #region Khởi tạo các hàm từ thư viện win32
 
         [DllImport("user32.dll", SetLastError = true)]
-        private static extern IntPtr SetWindowsHookEx(int idHook,
-            KeyboardHookDelegate lpfn, IntPtr hMod, int dwThreadId);
+        private static extern IntPtr SetWindowsHookEx(int idHook, KeyboardHookDelegate lpfn, IntPtr hMod, int dwThreadId);
 
         [DllImport("user32.dll", SetLastError = true)]
         private static extern bool UnhookWindowsHookEx(IntPtr hhk);
 
         [DllImport("user32.dll", SetLastError = true)]
-        private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode,
-            IntPtr wParam, IntPtr lParam);
+        private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
 
         [DllImport("kernel32.dll")]
         private static extern IntPtr GetModuleHandle(string lpModuleName);
@@ -29,9 +27,7 @@ namespace BTL_HDH
 
         private const int WM_KEYDOWN = 0x0100;
 
-        private const int WM_KEYUP = 0x0101;
-
-        #endregion Win32 API Functions and Constants
+        #endregion Khởi tạo các hàm từ thư viện win32
 
         private bool isKatakana = false;
 
@@ -41,16 +37,6 @@ namespace BTL_HDH
         private IntPtr _hookHandle = IntPtr.Zero;
 
         public delegate IntPtr KeyboardHookDelegate(int nCode, IntPtr wParam, IntPtr lParam);
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct KeyboardHookStruct
-        {
-            public int VirtualKeyCode;
-            public int ScanCode;
-            public int Flags;
-            public int Time;
-            public int ExtraInfo;
-        }
 
         // destructor
         ~KeyboardHook()
@@ -78,17 +64,14 @@ namespace BTL_HDH
         {
             if (nCode >= 0)
             {
-                KeyboardHookStruct kbStruct = (KeyboardHookStruct)Marshal.PtrToStructure(lParam, typeof(KeyboardHookStruct));
+                int VirtualKey = Marshal.ReadInt32(lParam);
 
                 if (wParam == (IntPtr)WM_KEYDOWN)
                 {
-                    listOfKeys.Add((Keys)kbStruct.VirtualKeyCode);
+                    listOfKeys.Add((Keys)VirtualKey);
                     if (listOfKeys.Count > 5)
                         listOfKeys.RemoveAt(0);
                     JPChar jpchar = new JPChar(listOfKeys);
-                    if (listOfKeys[4] == Keys.T && listOfKeys[3] == Keys.Shift && listOfKeys[2] == Keys.Control)
-                    {
-                    }
                     if (isKatakana ? jpchar.sendCharKatakana() : jpchar.sendCharHiragana())
                         return (IntPtr)1;
                 }
