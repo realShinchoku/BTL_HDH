@@ -797,20 +797,24 @@ namespace BTL_HDH
                             break;
 
                         case Keys.H:
-                            SendKeys.Send("{BACKSPACE}");
                             switch (l[2])
                             {
                                 case Keys.S:
+                                    SendKeys.Send("{BACKSPACE}");
                                     SendKeys.Send("{BACKSPACE}");
                                     SendKeys.Send("シ");
                                     break;
 
                                 case Keys.C:
                                     SendKeys.Send("{BACKSPACE}");
+                                    SendKeys.Send("{BACKSPACE}");
                                     SendKeys.Send("チ");
                                     break;
 
-                                default: SendKeys.Send("ヒ"); break;
+                                default:
+                                    SendKeys.Send("{BACKSPACE}");
+                                    SendKeys.Send("ヒ");
+                                    break;
                             }
                             break;
 
