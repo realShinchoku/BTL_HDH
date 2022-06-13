@@ -84,7 +84,7 @@ namespace BTL_HDH
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(12, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(347, 16);
+            this.label3.Size = new System.Drawing.Size(346, 16);
             this.label3.TabIndex = 4;
             this.label3.Text = "Chào mừng bạn tới với JPKey ver cây nhà lá vườn";
             // 
@@ -98,6 +98,8 @@ namespace BTL_HDH
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_typeOfChar);
             this.Controls.Add(this.btn_JPKey);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "JPKey";
             this.Text = "JPKey";
             this.Load += new System.EventHandler(this.JPKey_Load);

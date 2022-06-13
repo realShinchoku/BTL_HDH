@@ -20,9 +20,6 @@ namespace BTL_HDH
         [DllImport("user32.dll", SetLastError = true)]
         private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
 
-        [DllImport("kernel32.dll")]
-        private static extern IntPtr GetModuleHandle(string lpModuleName);
-
         private const int WH_KEYBOARD_LL = 13;
 
         private const int WM_KEYDOWN = 0x0100;
@@ -45,7 +42,7 @@ namespace BTL_HDH
         }
 
         public void Install(bool isKatakana = false)
-        {
+        {x
             this.isKatakana = isKatakana;
             _hookProc = KeyboardHookProc;
             _hookHandle = SetupHook(_hookProc);

@@ -6,7 +6,6 @@ namespace BTL_HDH
     internal class JPChar
     {
         private List<Keys> l = new List<Keys>() { 0, 0, 0, 0, 0 };
-        private bool isKatakana = false;
 
         public JPChar(List<Keys> listOfCharater)
         {
