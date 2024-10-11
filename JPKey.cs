@@ -1,62 +1,62 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace BTL_HDH
+namespace JPKey;
+
+public partial class JpKey : Form
 {
-    public partial class JPKey : Form
+    private readonly KeyboardHook _jpKeyApp;
+    private bool _status, _isKatakana;
+
+    public JpKey()
     {
-        private KeyboardHook jpkeyapp;
-        private bool status = false, isKatakana = false;
+        InitializeComponent();
+        _jpKeyApp = new KeyboardHook();
+    }
 
-        public JPKey()
+    private void JPKey_Load(object sender, EventArgs e)
+    {
+        JPkeyApp();
+    }
+
+    private void typeOfBtnChar_Click(object sender, EventArgs e)
+    {
+        if (_isKatakana)
         {
-            InitializeComponent();
-            jpkeyapp = new KeyboardHook();
+            _isKatakana = false;
+            btn_typeOfChar.Text = @"Hiragana";
+        }
+        else
+        {
+            _isKatakana = true;
+            btn_typeOfChar.Text = @"Katakana";
         }
 
-        private void JPKey_Load(object sender, EventArgs e)
-        {
-            JPkeyApp();
-        }
+        _jpKeyApp.Uninstall();
+        JPkeyApp();
+    }
 
-        private void typeOfCharbtn_Click(object sender, EventArgs e)
+    private void JPKey_btn_Click(object sender, EventArgs e)
+    {
+        if (_status)
         {
-            if (isKatakana)
-            {
-                isKatakana = false;
-                btn_typeOfChar.Text = "Hiragana";
-            }
-            else
-            {
-                isKatakana = true;
-                btn_typeOfChar.Text = "Katakana";
-            }
-            jpkeyapp.Uninstall();
-            JPkeyApp();
+            _jpKeyApp.Uninstall();
+            _status = false;
+            btn_JPKey.Text = @"Tắt";
         }
+        else
+        {
+            _status = true;
+            _jpKeyApp.Install(_isKatakana);
+            btn_JPKey.Text = @"Bật";
+        }
+    }
 
-        private void JPKey_btn_Click(object sender, EventArgs e)
-        {
-            if (status)
-            {
-                jpkeyapp.Uninstall();
-                status = false;
-                btn_JPKey.Text = "Tắt";
-            }
-            else
-            {
-                status = true;
-                jpkeyapp.Install(isKatakana);
-                btn_JPKey.Text = "Bật";
-            }
-        }
-
-        private void JPkeyApp()
-        {
-            if (status)
-                jpkeyapp.Install(isKatakana);
-            else
-                jpkeyapp.Uninstall();
-        }
+    private void JPkeyApp()
+    {
+        if (_status)
+            _jpKeyApp.Install(_isKatakana);
+        else
+            _jpKeyApp.Uninstall();
     }
 }

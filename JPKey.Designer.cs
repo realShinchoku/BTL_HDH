@@ -1,7 +1,7 @@
 ﻿
-namespace BTL_HDH
+namespace JPKey
 {
-    partial class JPKey
+    partial class JpKey
     {
         /// <summary>
         /// Required designer variable.
@@ -56,7 +56,7 @@ namespace BTL_HDH
             this.btn_typeOfChar.TabIndex = 1;
             this.btn_typeOfChar.Text = "Hiragana";
             this.btn_typeOfChar.UseVisualStyleBackColor = true;
-            this.btn_typeOfChar.Click += new System.EventHandler(this.typeOfCharbtn_Click);
+            this.btn_typeOfChar.Click += new System.EventHandler(this.typeOfBtnChar_Click);
             // 
             // label1
             // 
@@ -100,7 +100,7 @@ namespace BTL_HDH
             this.Controls.Add(this.btn_JPKey);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "JPKey";
+            this.Name = "JpKey";
             this.Text = "JPKey";
             this.Load += new System.EventHandler(this.JPKey_Load);
             this.ResumeLayout(false);
