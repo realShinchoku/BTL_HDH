@@ -4,7 +4,11 @@ on:
   push:
     tags:
       - 'v*.*.*'
-
+      - 
+permissions:
+  packages: write
+  contents: write
+  
 jobs:
   build:
     runs-on: windows-latest
@@ -28,15 +32,14 @@ jobs:
         run: dotnet publish JPKey.csproj --configuration Release --output ./output
 
       - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+        uses: elgohr/Github-Release-Action@v5
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            title: ${{ github.ref }}
+            tag: ${{ github.ref }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
+          title: ${{ github.ref }}
 
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
