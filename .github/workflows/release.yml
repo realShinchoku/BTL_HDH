@@ -22,10 +22,10 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build JPKey.csproj --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish --configuration Release --no-build --output ./output
+        run: dotnet publish JPKey.csproj --configuration Release --output ./output
 
       - name: Create Release
         id: create_release
